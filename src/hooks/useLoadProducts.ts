@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-type Product = {
+import { Product } from "../models/types";
+
+/* type Product = {
     id: number;
     title: string;
     description: string;
@@ -13,7 +15,7 @@ type Product = {
     category: string;
     thumbnail: string;
     images: string[];
-};
+}; */
 
 type GetProductsResponse = {
     products: Product[];

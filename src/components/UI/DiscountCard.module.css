@@ -1,0 +1,13 @@
+.discountCard {
+    background-color: #5d2be2;
+    color: white;
+    padding: 0.4rem 0.9rem;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    border-radius: 20px;
+}
+
+.discountCard p {
+    margin: 0;
+}

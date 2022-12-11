@@ -1,5 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 import useLoadProducts from "../hooks/useLoadProducts";
+import ProductItem from "../components/ProductItem";
+
+import classes from "./Products.module.css";
 
 const Products = () => {
     const [skipNum, setSkipNum] = useState(0);
@@ -24,17 +27,37 @@ const Products = () => {
     console.log(products);
     return (
         <>
-            <h1>Hello World</h1>
-            <ul>
+            <h1>See Products</h1>
+            <ul className={classes.products_grid}>
                 {products.map((product, index) => {
                     if (products.length === index + 1) {
                         return (
                             <li ref={lastProductElementRef} key={product.id}>
-                                {product.title}
+                                <ProductItem
+                                    title={product.title}
+                                    description={product.description}
+                                    price={product.price}
+                                    discountPercentage={
+                                        product.discountPercentage
+                                    }
+                                    thumbnail={product.thumbnail}
+                                />
                             </li>
                         );
                     } else {
-                        return <li key={product.id}>{product.title}</li>;
+                        return (
+                            <li ref={lastProductElementRef} key={product.id}>
+                                <ProductItem
+                                    title={product.title}
+                                    description={product.description}
+                                    price={product.price}
+                                    discountPercentage={
+                                        product.discountPercentage
+                                    }
+                                    thumbnail={product.thumbnail}
+                                />
+                            </li>
+                        );
                     }
                 })}
             </ul>
