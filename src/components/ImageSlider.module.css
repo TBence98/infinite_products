@@ -1,0 +1,28 @@
+.slider {
+    height: 100%;
+    position: relative;
+}
+
+.arrow {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.arrow--right {
+    right: -0.2rem;
+}
+
+.arrow--left {
+    left: -0.2rem;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+}

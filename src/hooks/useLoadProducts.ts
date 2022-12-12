@@ -43,10 +43,11 @@ const useLoadProducts = (query: number, skipNumber: number) => {
                     return [...prevProducts, ...res.data.products];
                 });
                 setHasMore(res.data.total > skipNumber);
-                setLoading(false);
             })
             .catch((e) => {
                 setError(true);
+            })
+            .finally(() => {
                 setLoading(false);
             });
     }, [query, skipNumber]);

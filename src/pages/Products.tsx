@@ -41,6 +41,7 @@ const Products = () => {
                                         product.discountPercentage
                                     }
                                     thumbnail={product.thumbnail}
+                                    id={product.id}
                                 />
                             </li>
                         );
@@ -55,6 +56,7 @@ const Products = () => {
                                         product.discountPercentage
                                     }
                                     thumbnail={product.thumbnail}
+                                    id={product.id}
                                 />
                             </li>
                         );
