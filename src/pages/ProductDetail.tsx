@@ -4,6 +4,7 @@ import axios from "axios";
 
 import classes from "./ProductDetail.module.css";
 import ImageSlider from "../components/ImageSlider";
+import ProductDetailInfos from "../components/ProductDetailInfos";
 
 type ProductDatas = {
     title: string;
@@ -54,8 +55,20 @@ const ProductDetail = () => {
     return (
         <>
             <h1>Product Detail Page {id}</h1>
-            <div className={classes.slider_container}>
+            <div className={classes.details_container}>
                 <ImageSlider slides={productDetails!.images} />
+                <section className={classes.product_infos_container}>
+                    <ProductDetailInfos
+                        title={productDetails!.title}
+                        description={productDetails!.description}
+                        price={productDetails!.price}
+                        discountPercentage={productDetails!.discountPercentage}
+                        rating={productDetails!.rating}
+                        stock={productDetails!.stock}
+                        brand={productDetails!.brand}
+                        category={productDetails!.category}
+                    />
+                </section>
             </div>
         </>
     );

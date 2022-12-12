@@ -1,4 +1,21 @@
-.slider_container {
+.details_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product_infos_container {
     width: 50%;
-    height: 27rem;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 839px) {
+    .details_container {
+        flex-flow: column;
+    }
+
+    .product_infos_container {
+        margin-top: 2rem;
+        width: 100%;
+    }
 }

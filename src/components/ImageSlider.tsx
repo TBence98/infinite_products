@@ -17,8 +17,16 @@ const ImageSlider: React.FC<{ slides: string[] }> = ({ slides }) => {
         setCurrentIndex(newIndex);
     };
 
+    const moveDot = (index: number) => {
+        setCurrentIndex(index);
+    };
+
+    if (!Array.isArray(slides) || slides.length <= 0) {
+        return null;
+    }
+
     return (
-        <div className={classes.slider}>
+        <section className={classes.slider}>
             <div
                 className={`${classes.arrow} ${classes["arrow--left"]}`}
                 onClick={goToPrevious}
@@ -26,19 +34,64 @@ const ImageSlider: React.FC<{ slides: string[] }> = ({ slides }) => {
                 &#60;
             </div>
             <div
-                style={{
-                    backgroundImage: `url(${slides[currentIndex]})`,
-                }}
-                className={classes.slide}
-            ></div>
-            <div
                 className={`${classes.arrow} ${classes["arrow--right"]}`}
                 onClick={goToNext}
             >
                 &#62;
             </div>
-        </div>
+            {slides.map((slide, index) => {
+                return (
+                    <div
+                        className={`${classes.slide} ${
+                            index === currentIndex ? classes.active : ""
+                        }`}
+                        key={index}
+                    >
+                        {index === currentIndex && (
+                            <img
+                                src={slide}
+                                alt="product image"
+                                className={classes.image}
+                            />
+                        )}
+                    </div>
+                );
+            })}
+            <div className={classes.dots_container}>
+                {Array.from({ length: slides.length }).map((item, index) => (
+                    <div
+                        onClick={() => moveDot(index)}
+                        className={`${classes.dot} ${
+                            currentIndex === index ? classes.dot_active : ""
+                        }`}
+                    ></div>
+                ))}
+            </div>
+        </section>
     );
 };
 
 export default ImageSlider;
+
+{
+    /* <div className={classes.slider}>
+    <div
+        className={`${classes.arrow} ${classes["arrow--left"]}`}
+        onClick={goToPrevious}
+    >
+        &#60;
+    </div>
+    <div
+        style={{
+            backgroundImage: `url(${slides[currentIndex]})`,
+        }}
+        className={classes.slide}
+    ></div>
+    <div
+        className={`${classes.arrow} ${classes["arrow--right"]}`}
+        onClick={goToNext}
+    >
+        &#62;
+    </div>
+</div>; */
+}

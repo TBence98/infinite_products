@@ -1,0 +1,8 @@
+.star {
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.filled_star {
+    color: #5d2be2;
+}
