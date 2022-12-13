@@ -24,10 +24,9 @@ const Products = () => {
         [loading, hasMore]
     );
 
-    console.log(products);
     return (
         <>
-            <h1>See Products</h1>
+            <h1 className={classes.title}>See Products</h1>
             <ul className={classes.products_grid}>
                 {products.map((product, index) => {
                     if (products.length === index + 1) {
@@ -47,7 +46,7 @@ const Products = () => {
                         );
                     } else {
                         return (
-                            <li ref={lastProductElementRef} key={product.id}>
+                            <li key={product.id}>
                                 <ProductItem
                                     title={product.title}
                                     description={product.description}

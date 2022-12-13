@@ -1,19 +1,9 @@
 import DiscountCard from "./UI/DiscountCard";
 import Button from "./UI/Button";
 import RatingStars from "./RatingStars";
+import { IProductDetailInfos } from "../models/types";
 
 import classes from "./ProductDetailInfos.module.css";
-
-type IProductDetailInfos = {
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-};
 
 const ProductDetailInfos: React.FC<IProductDetailInfos> = ({
     title,

@@ -1,9 +1,9 @@
 import classes from "./DiscountCard.module.css";
 
-const DiscountCard: React.FC<{ discount: number; className?: any }> = ({
-    discount,
-    className,
-}) => {
+const DiscountCard: React.FC<{
+    discount: number;
+    className?: any;
+}> = ({ discount, className }) => {
     return (
         <div
             className={`${classes.discountCard} ${

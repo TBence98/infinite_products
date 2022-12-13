@@ -3,25 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import classes from "./ProductDetail.module.css";
+import { IProductDatas } from "../models/types";
 import ImageSlider from "../components/ImageSlider";
 import ProductDetailInfos from "../components/ProductDetailInfos";
 
-type ProductDatas = {
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    images: string[];
-    id: number;
-    thumbnail: string;
-};
-
 const ProductDetail = () => {
-    const [productDetails, setProductDetails] = useState<ProductDatas | null>(
+    const [productDetails, setProductDetails] = useState<IProductDatas | null>(
         null
     );
     const [loading, setLoading] = useState(true);
@@ -29,7 +16,7 @@ const ProductDetail = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        axios<ProductDatas>({
+        axios<IProductDatas>({
             method: "GET",
             url: "https://dummyjson.com/products/" + id,
         })
@@ -53,24 +40,23 @@ const ProductDetail = () => {
     }
 
     return (
-        <>
-            <h1>Product Detail Page {id}</h1>
-            <div className={classes.details_container}>
+        <div className={classes.details_container}>
+            <section className={classes.image_slider_container}>
                 <ImageSlider slides={productDetails!.images} />
-                <section className={classes.product_infos_container}>
-                    <ProductDetailInfos
-                        title={productDetails!.title}
-                        description={productDetails!.description}
-                        price={productDetails!.price}
-                        discountPercentage={productDetails!.discountPercentage}
-                        rating={productDetails!.rating}
-                        stock={productDetails!.stock}
-                        brand={productDetails!.brand}
-                        category={productDetails!.category}
-                    />
-                </section>
-            </div>
-        </>
+            </section>
+            <section className={classes.product_infos_container}>
+                <ProductDetailInfos
+                    title={productDetails!.title}
+                    description={productDetails!.description}
+                    price={productDetails!.price}
+                    discountPercentage={productDetails!.discountPercentage}
+                    rating={productDetails!.rating}
+                    stock={productDetails!.stock}
+                    brand={productDetails!.brand}
+                    category={productDetails!.category}
+                />
+            </section>
+        </div>
     );
 };
 

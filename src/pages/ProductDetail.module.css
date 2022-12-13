@@ -2,6 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 15% 0;
+}
+
+.image_slider_container {
+    height: 26rem;
+    width: 50%;
+    margin-right: 2rem;
 }
 
 .product_infos_container {
@@ -16,6 +23,12 @@
 
     .product_infos_container {
         margin-top: 2rem;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 839px) {
+    .image_slider_container {
         width: 100%;
     }
 }

@@ -1,11 +1,9 @@
 .slider {
-    height: 26rem;
+    height: 100%;
     position: relative;
-    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 2rem;
 }
 
 .image {
@@ -20,14 +18,15 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    user-select: none;
 }
 
 .arrow--right {
-    right: -0.2rem;
+    right: 1rem;
 }
 
 .arrow--left {
-    left: -0.2rem;
+    left: 1rem;
 }
 
 .slide {
