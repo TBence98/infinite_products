@@ -56,3 +56,10 @@
 .dot_active {
     background-color: #5d2be2;
 }
+
+@media screen and (max-width: 839px) {
+    .slider_controls_container {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
