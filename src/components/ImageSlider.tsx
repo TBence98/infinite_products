@@ -7,7 +7,6 @@ interface SliderProps {
 
 const ImageSlider: React.FC<SliderProps> = ({ slides }) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [offset, setOffset] = React.useState(0);
     const [prevBtnIsDisabled, setPrevBtnIsDisabled] = React.useState(true);
     const [nextBtnIsDisabled, setNextBtnIsDisabled] = React.useState(true);
 
@@ -16,39 +15,28 @@ const ImageSlider: React.FC<SliderProps> = ({ slides }) => {
         for the disable attribute */
         if (slides.length === 1) return;
 
-        if (offset === 0) {
+        if (currentIndex === 0) {
             setPrevBtnIsDisabled(true);
         } else {
             setPrevBtnIsDisabled(false);
         }
-        if (offset === slides.length - 1) {
+        if (currentIndex === slides.length - 1) {
             setNextBtnIsDisabled(true);
         } else {
             setNextBtnIsDisabled(false);
         }
-    }, [offset]);
+    }, [currentIndex]);
 
     const handlePrevious = () => {
-        if (currentIndex === 0) {
-            setCurrentIndex(slides.length - 1);
-        } else {
-            setCurrentIndex(currentIndex - 1);
-        }
-        setOffset((prevOffset) => prevOffset - 1);
+        setCurrentIndex((prevIndex) => prevIndex - 1);
     };
 
     const handleNext = () => {
-        if (currentIndex === slides.length - 1) {
-            setCurrentIndex(0);
-        } else {
-            setCurrentIndex(currentIndex + 1);
-        }
-        setOffset((prevOffset) => prevOffset + 1);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
     };
 
     const moveDot = (index: number) => {
         setCurrentIndex(index);
-        setOffset(index);
     };
 
     return (
@@ -59,7 +47,9 @@ const ImageSlider: React.FC<SliderProps> = ({ slides }) => {
                         key={index}
                         src={slide}
                         style={{
-                            transform: `translateX(${100 * (index - offset)}%)`,
+                            transform: `translateX(${
+                                100 * (index - currentIndex)
+                            }%)`,
                             transition: "all 0.5s",
                         }}
                         alt="product image"
