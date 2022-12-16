@@ -1,62 +1,85 @@
-import { useState } from "react";
-
+import React, { useEffect } from "react";
 import classes from "./ImageSlider.module.css";
 
-const ImageSlider: React.FC<{ slides: string[] }> = ({ slides }) => {
-    if (!Array.isArray(slides) || slides.length <= 0) {
-        return null;
-    }
+interface SliderProps {
+    slides: string[];
+}
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+const ImageSlider: React.FC<SliderProps> = ({ slides }) => {
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [offset, setOffset] = React.useState(0);
+    const [prevBtnIsDisabled, setPrevBtnIsDisabled] = React.useState(true);
+    const [nextBtnIsDisabled, setNextBtnIsDisabled] = React.useState(true);
 
-    const goToPrevious = () => {
-        const isFirstSlide = currentIndex === 0;
-        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex);
+    useEffect(() => {
+        /* in this case both button have to use the initial true value
+        for the disable attribute */
+        if (slides.length === 1) return;
+
+        if (offset === 0) {
+            setPrevBtnIsDisabled(true);
+        } else {
+            setPrevBtnIsDisabled(false);
+        }
+        if (offset === slides.length - 1) {
+            setNextBtnIsDisabled(true);
+        } else {
+            setNextBtnIsDisabled(false);
+        }
+    }, [offset]);
+
+    const handlePrevious = () => {
+        if (currentIndex === 0) {
+            setCurrentIndex(slides.length - 1);
+        } else {
+            setCurrentIndex(currentIndex - 1);
+        }
+        setOffset((prevOffset) => prevOffset - 1);
     };
 
-    const goToNext = () => {
-        const isLastSlide = currentIndex === slides.length - 1;
-        const newIndex = isLastSlide ? 0 : currentIndex + 1;
-        setCurrentIndex(newIndex);
+    const handleNext = () => {
+        if (currentIndex === slides.length - 1) {
+            setCurrentIndex(0);
+        } else {
+            setCurrentIndex(currentIndex + 1);
+        }
+        setOffset((prevOffset) => prevOffset + 1);
     };
 
     const moveDot = (index: number) => {
         setCurrentIndex(index);
+        setOffset(index);
     };
 
     return (
-        <div className={classes.slider}>
-            <div
+        <div className={classes.slider_controls_container}>
+            <div className={classes.slider}>
+                {slides.map((slide, index) => (
+                    <img
+                        key={index}
+                        src={slide}
+                        style={{
+                            transform: `translateX(${100 * (index - offset)}%)`,
+                            transition: "all 0.5s",
+                        }}
+                        alt="product image"
+                    />
+                ))}
+            </div>
+            <button
                 className={`${classes.arrow} ${classes["arrow--left"]}`}
-                onClick={goToPrevious}
+                onClick={handlePrevious}
+                disabled={prevBtnIsDisabled}
             >
                 &#60;
-            </div>
-            <div
+            </button>
+            <button
                 className={`${classes.arrow} ${classes["arrow--right"]}`}
-                onClick={goToNext}
+                onClick={handleNext}
+                disabled={nextBtnIsDisabled}
             >
                 &#62;
-            </div>
-            {slides.map((slide, index) => {
-                return (
-                    <div
-                        className={`${classes.slide} ${
-                            index === currentIndex ? classes.active : ""
-                        }`}
-                        key={index}
-                    >
-                        {index === currentIndex && (
-                            <img
-                                src={slide}
-                                alt="product image"
-                                className={classes.image}
-                            />
-                        )}
-                    </div>
-                );
-            })}
+            </button>
             <div className={classes.dots_container}>
                 {Array.from({ length: slides.length }).map((item, index) => (
                     <div
