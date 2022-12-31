@@ -46,6 +46,7 @@ const ProductDetail = () => {
             </section>
             <section className={classes.product_infos_container}>
                 <ProductDetailInfos
+                    id={+id!}
                     title={productDetails!.title}
                     description={productDetails!.description}
                     price={productDetails!.price}

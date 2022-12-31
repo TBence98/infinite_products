@@ -8,11 +8,16 @@ export type Product = {
     stock?: number;
     brand?: string;
     category?: string;
-    thumbnail: string;
+    thumbnail?: string;
     images?: string[];
 };
 
+export type CartItem = Product & {
+    quantity: number;
+};
+
 export interface IProductDetailInfos {
+    id: number;
     title: string;
     description: string;
     price: number;

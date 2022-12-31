@@ -1,0 +1,26 @@
+.cart_button {
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.cart_button svg {
+    color: #297ed5;
+    font-size: 1.3rem;
+    margin-right: 0.3rem;
+}
+
+.item_count {
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: absolute;
+    font-size: 80%;
+    width: 1.125rem;
+    height: 1.125rem;
+    line-height: 1.125rem;
+    text-align: center;
+    font-weight: bold;
+    top: -0.6rem;
+    left: 0.8rem;
+}
