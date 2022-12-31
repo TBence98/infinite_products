@@ -1,0 +1,8 @@
+.cart_summary {
+    height: 18rem;
+}
+
+.line_separator {
+    height: 1px;
+    background-color: rgb(189, 189, 189);
+}

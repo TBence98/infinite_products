@@ -1,0 +1,48 @@
+.cart_item {
+    background-color: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.875rem 1.56rem 1.25rem 1.56rem;
+    margin-bottom: 0.4rem;
+}
+
+.product_title_container {
+    width: 20rem;
+}
+
+.product_title_container h2 {
+    margin-top: 0;
+}
+
+.cart_actions_container {
+    display: flex;
+}
+
+.cart_counter {
+    border: 1px solid rgb(204, 204, 204);
+    padding: 0.3rem 0.6rem;
+}
+
+.cart_actions_container button {
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.cart_counter_increase {
+    border: 1px solid rgba(0, 0, 0, 0.065);
+    border-radius: 6px 0 0 6px;
+}
+
+.cart_counter_decrease {
+    border: 1px solid rgba(0, 0, 0, 0.065);
+    border-radius: 0 6px 6px 0;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.5rem;
+    align-self: flex-start;
+}
