@@ -12,10 +12,6 @@ export type Product = {
     images?: string[];
 };
 
-export type CartItem = Product & {
-    quantity: number;
-};
-
 export interface IProductDetailInfos {
     id: number;
     title: string;
@@ -29,15 +25,10 @@ export interface IProductDetailInfos {
 }
 
 export interface IProductDatas extends IProductDetailInfos {
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    images: string[];
-    id: number;
+    images?: string[];
     thumbnail: string;
 }
+
+export type CartItem = IProductDatas & {
+    quantity: number;
+};

@@ -1,5 +1,7 @@
 .cart_summary {
     height: 18rem;
+    box-shadow: 3px 3px 2px #e3e3e3;
+    border: none;
 }
 
 .line_separator {

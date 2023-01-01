@@ -42,7 +42,7 @@ const ProductDetail = () => {
     return (
         <div className={classes.details_container}>
             <section className={classes.image_slider_container}>
-                <ImageSlider slides={productDetails!.images} />
+                <ImageSlider slides={productDetails!.images!} />
             </section>
             <section className={classes.product_infos_container}>
                 <ProductDetailInfos
@@ -55,6 +55,7 @@ const ProductDetail = () => {
                     stock={productDetails!.stock}
                     brand={productDetails!.brand}
                     category={productDetails!.category}
+                    thumbnail={productDetails!.thumbnail}
                 />
             </section>
         </div>

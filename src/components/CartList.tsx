@@ -14,7 +14,9 @@ const CartList = () => {
                     return (
                         <CartListItem
                             key={cartItem.id}
-                            title={cartItem.title}
+                            productProps={{ ...cartItem }}
+                            onAddItem={cartCtx!.addToCart}
+                            onRemoveFromCart={cartCtx!.removeFromCart}
                         />
                     );
                 })}
