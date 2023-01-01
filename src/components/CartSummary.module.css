@@ -1,10 +1,49 @@
 .cart_summary {
-    height: 18rem;
+    height: 17rem;
     box-shadow: 3px 3px 2px #e3e3e3;
     border: none;
+}
+
+.cart_summary h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.summary_line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.free_shipment {
+    color: green;
+    font-weight: bold;
 }
 
 .line_separator {
     height: 1px;
     background-color: rgb(189, 189, 189);
+}
+
+.total_amount_text {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+}
+
+.total_amount {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.proveed_btn {
+    text-decoration: none;
+    color: white;
+    background-image: linear-gradient(to bottom right, #3482cc, #1763aa);
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+    padding: 0.4rem 0;
 }

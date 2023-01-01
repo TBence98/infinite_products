@@ -97,6 +97,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
     const contextValues = {
         cartItems: cartState.items,
+        totalAmount: cartState.totalAmount,
         addToCart,
         removeFromCart,
     };

@@ -3,6 +3,7 @@ import { CartItem } from "../models/types";
 
 type CartContext = {
     cartItems: CartItem[];
+    totalAmount: number;
     addToCart: (product: CartItem) => void;
     removeFromCart: (productId: number) => void;
 };
