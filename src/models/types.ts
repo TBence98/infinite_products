@@ -52,7 +52,7 @@ export type RenderInput = (
 ) => JSX.Element;
 
 interface validationRule {
-    ruleName: string;
+    name: string;
     message: string;
     validate: (value: string) => boolean;
 }
