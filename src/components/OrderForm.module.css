@@ -44,3 +44,13 @@
     color: red;
     text-align: left;
 }
+
+.order_btn {
+    background-color: #500fcf;
+    padding: 0.7rem 2rem;
+}
+
+.order_btn:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}

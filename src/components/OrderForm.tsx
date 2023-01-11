@@ -1,5 +1,6 @@
 import Card from "./UI/Card";
 import useInput from "../hooks/useInput";
+import Button from "./UI/Button";
 import { orderForm } from "../utils/orderFormConfig";
 
 import classes from "./OrderForm.module.css";
@@ -11,9 +12,13 @@ const Form = () => {
             <h1>Order Product</h1>
             <form>
                 {renderFormInputs()}
-                <button type="submit" disabled={!isFormValid}>
+                <Button
+                    className={classes.order_btn}
+                    type="submit"
+                    disabled={!isFormValid}
+                >
                     Order
-                </button>
+                </Button>
             </form>
         </Card>
     );

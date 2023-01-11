@@ -5,14 +5,22 @@ type Button = {
     onClick?: (e: React.MouseEvent<HTMLElement>) => void | undefined;
     className?: any | undefined;
     children?: React.ReactNode;
+    disabled?: boolean;
 };
 
-const Button: React.FC<Button> = ({ type, onClick, className, children }) => {
+const Button: React.FC<Button> = ({
+    type,
+    onClick,
+    className,
+    children,
+    disabled,
+}) => {
     return (
         <button
             type={type}
             onClick={onClick}
             className={`${classes.button} ${className}`}
+            disabled={disabled}
         >
             {children}
         </button>
