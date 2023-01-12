@@ -9,6 +9,11 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
+.spinner_container {
+    width: fit-content;
+    margin: 30vh auto 0 auto;
+}
+
 @media screen and (max-width: 1300px) {
     .products_grid {
         grid-template-columns: repeat(3, 1fr);

@@ -1,11 +1,13 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import useLoadProducts from "../../hooks/useLoadProducts";
 import ProductItem from "./ProductItem";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 import classes from "./Products.module.css";
 
 const Products = () => {
     const [skipNum, setSkipNum] = useState(0);
+    const [isInitialLoading, setIsInitialLoading] = useState(true);
     const { products, hasMore, loading, error } = useLoadProducts(10, skipNum);
 
     const observer = useRef<IntersectionObserver>();
@@ -23,6 +25,20 @@ const Products = () => {
         },
         [loading, hasMore]
     );
+
+    useEffect(() => {
+        if (products.length > 0 && isInitialLoading) {
+            setIsInitialLoading(false);
+        }
+    }, [products]);
+
+    if (isInitialLoading) {
+        return (
+            <div className={classes.spinner_container}>
+                <LoadingSpinner />
+            </div>
+        );
+    }
 
     return (
         <>
