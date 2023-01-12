@@ -3,3 +3,9 @@
     grid-template-columns: 3fr 1fr;
     gap: 1rem;
 }
+
+@media screen and (max-width: 1044px) {
+    .cart_container {
+        display: block;
+    }
+}

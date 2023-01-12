@@ -25,12 +25,16 @@
         margin-top: 2rem;
         width: 100%;
     }
-}
 
-@media screen and (max-width: 839px) {
     .image_slider_container {
-        width: 100%;
+        width: 90%;
         height: 20rem;
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .image_slider_container {
+        height: 15rem;
     }
 }

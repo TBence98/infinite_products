@@ -55,3 +55,19 @@
     width: 130px;
     text-align: center;
 }
+
+@media screen and (max-width: 850px) {
+    .cart_item {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .product_title_container {
+        text-align: center;
+        width: fit-content;
+    }
+
+    .cart_actions_container {
+        margin-bottom: 0.8rem;
+    }
+}
