@@ -8,16 +8,17 @@ const Input = (props: InputComponent) => {
         props;
     return (
         <p className={classes["input-container"]}>
-            <label>{label}</label>
+            <label className={classes.label}>{label}</label>
             <input
+                className={classes.input}
                 type={type}
                 name={name}
                 value={value}
                 onChange={handleChange}
             />
-            {errorMessage && !isValid && (
-                <span className={classes["error-text"]}>{errorMessage}</span>
-            )}
+            <span className={classes["error-text"]}>
+                {errorMessage && !isValid ? errorMessage : ""}
+            </span>
         </p>
     );
 };

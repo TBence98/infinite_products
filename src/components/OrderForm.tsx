@@ -8,8 +8,8 @@ import classes from "./OrderForm.module.css";
 const Form = () => {
     const { renderFormInputs, isFormValid } = useInput(orderForm);
     return (
-        <Card className={classes.user_form}>
-            <h1>Order Product</h1>
+        <Card className={classes.order_form}>
+            <h1 className={classes.title}>Order Product</h1>
             <form>
                 {renderFormInputs()}
                 <Button
