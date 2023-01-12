@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import classes from "./ProductDetail.module.css";
-import { IProductDatas } from "../models/types";
-import ImageSlider from "../components/ImageSlider";
-import ProductDetailInfos from "../components/ProductDetailInfos";
+import { IProductDatas } from "../../models/types";
+import ImageSlider from "./ImageSlider";
+import ProductDetailInfos from "./ProductDetailInfos";
 
 const ProductDetail = () => {
     const [productDetails, setProductDetails] = useState<IProductDatas | null>(

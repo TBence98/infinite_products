@@ -1,6 +1,6 @@
 import classes from "./CartListItem.module.css";
-import Card from "./UI/Card";
-import { CartItem } from "../models/types";
+import Card from "../../components/UI/Card";
+import { CartItem } from "../../models/types";
 
 interface CartListItemProps {
     productProps: CartItem;

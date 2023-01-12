@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from "react";
-import useLoadProducts from "../hooks/useLoadProducts";
-import ProductItem from "../components/ProductItem";
+import useLoadProducts from "../../hooks/useLoadProducts";
+import ProductItem from "./ProductItem";
 
 import classes from "./Products.module.css";
 

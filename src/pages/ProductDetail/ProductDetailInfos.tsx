@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import DiscountCard from "./UI/DiscountCard";
-import Button from "./UI/Button";
+import DiscountCard from "../../components/UI/DiscountCard";
+import Button from "../../components/UI/Button";
 import RatingStars from "./RatingStars";
-import { IProductDatas } from "../models/types";
-import CartContext from "../store/CartContext";
+import { IProductDatas } from "../../models/types";
+import CartContext from "../../store/CartContext";
 
 import classes from "./ProductDetailInfos.module.css";
 

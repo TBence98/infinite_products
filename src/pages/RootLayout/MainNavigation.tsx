@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CartButton from "./UI/CartButton";
+import CartButton from "./CartButton";
 
 import classes from "./MainNavigation.module.css";
 

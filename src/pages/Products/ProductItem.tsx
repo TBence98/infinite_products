@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { Product } from "../models/types";
-import Card from "./UI/Card";
-import Button from "./UI/Button";
-import DiscountCard from "./UI/DiscountCard";
+import { Product } from "../../models/types";
+import Card from "../../components/UI/Card";
+import Button from "../../components/UI/Button";
+import DiscountCard from "../../components/UI/DiscountCard";
 
 import classes from "./ProductItem.module.css";
 

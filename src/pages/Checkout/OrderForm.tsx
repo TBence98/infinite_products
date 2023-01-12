@@ -1,7 +1,7 @@
-import Card from "./UI/Card";
-import useInput from "../hooks/useInput";
-import Button from "./UI/Button";
-import { orderForm } from "../utils/orderFormConfig";
+import Card from "../../components/UI/Card";
+import useInput from "../../hooks/useInput";
+import Button from "../../components/UI/Button";
+import { orderForm } from "../../utils/orderFormConfig";
 
 import classes from "./OrderForm.module.css";
 

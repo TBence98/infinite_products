@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Card from "./UI/Card";
-import CartContext from "../store/CartContext";
+import Card from "../../components/UI/Card";
+import CartContext from "../../store/CartContext";
 import classes from "./CartSummary.module.css";
 
 const CartSummary = () => {
