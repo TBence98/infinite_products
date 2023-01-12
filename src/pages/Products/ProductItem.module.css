@@ -30,6 +30,7 @@
 .description {
     margin-top: 0;
     margin-bottom: 4rem;
+    overflow-wrap: anywhere;
 }
 
 .details_btn {
