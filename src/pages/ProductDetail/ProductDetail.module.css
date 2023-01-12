@@ -16,6 +16,11 @@
     font-size: 1.5rem;
 }
 
+.spinner_container {
+    width: fit-content;
+    margin: 30vh auto 0 auto;
+}
+
 @media screen and (max-width: 839px) {
     .details_container {
         flex-flow: column;

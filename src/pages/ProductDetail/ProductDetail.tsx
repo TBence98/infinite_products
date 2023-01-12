@@ -6,6 +6,7 @@ import classes from "./ProductDetail.module.css";
 import { IProductDatas } from "../../models/types";
 import ImageSlider from "./ImageSlider";
 import ProductDetailInfos from "./ProductDetailInfos";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const ProductDetail = () => {
     const [productDetails, setProductDetails] = useState<IProductDatas | null>(
@@ -32,7 +33,11 @@ const ProductDetail = () => {
     }, []);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className={classes.spinner_container}>
+                <LoadingSpinner />
+            </div>
+        );
     }
 
     if (error) {
