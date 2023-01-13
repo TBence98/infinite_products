@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useCallback, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import useLoadProducts from "../../hooks/useLoadProducts";
 import ProductItem from "./ProductItem";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
@@ -9,22 +9,6 @@ import classes from "./Products.module.css";
 const Products = () => {
     const [isInitialLoading, setIsInitialLoading] = useState(true);
     const productsCtx = useContext(ProductsContext);
-
-    /* const observer = useRef<IntersectionObserver>(); */
-
-    /* const lastProductElementRef = useCallback(
-        (node: HTMLLIElement) => {
-            if (loading) return;
-            if (observer.current) observer.current.disconnect();
-            observer.current = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting && hasMore) {
-                    setSkipNum((prevPageNumber) => prevPageNumber + 10);
-                }
-            });
-            if (node) observer.current.observe(node);
-        },
-        [loading, hasMore]
-    ); */
 
     useEffect(() => {
         if (productsCtx.products.length > 0 && isInitialLoading) {
