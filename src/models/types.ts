@@ -33,16 +33,6 @@ export type CartItem = IProductDatas & {
     quantity: number;
 };
 
-export interface InputComponent {
-    label: string;
-    type: string;
-    name: string;
-    handleChange: (event: React.FormEvent<HTMLInputElement>) => void;
-    errorMessage: string;
-    isValid: boolean;
-    value: string;
-}
-
 export type RenderInput = (
     handleChange: (event: React.FormEvent<HTMLInputElement>) => void,
     value: string,
@@ -55,6 +45,20 @@ interface validationRule {
     name: string;
     message: string;
     validate: (value: string) => boolean;
+}
+
+export interface InputComponent {
+    label: string;
+    type: string;
+    name: string;
+    validationRules: Array<validationRule>;
+    handleChange: (
+        name: string,
+        value: string,
+        isValid: boolean,
+        errorMessage: string
+    ) => void;
+    registerInput: (name: string) => void;
 }
 
 export interface Input {

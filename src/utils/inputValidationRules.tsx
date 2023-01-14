@@ -41,3 +41,14 @@ export function atSignRule(inputName: string) {
         (inputValue) => inputValue.includes("@")
     );
 }
+
+const validationRulesObj: {
+    [ruleName: string]: (inputName: string, characters: number) => void;
+} = {
+    requiredRule,
+    minLengthRule,
+    maxLengthRule,
+    atSignRule,
+};
+
+export default validationRulesObj;
