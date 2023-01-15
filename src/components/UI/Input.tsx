@@ -4,8 +4,15 @@ import { InputComponent } from "../../models/types";
 import classes from "./Input.module.css";
 
 const Input = (props: InputComponent) => {
-    const { label, type, name, handleChange, validationRules, registerInput } =
-        props;
+    const {
+        label,
+        type,
+        name,
+        handleChange,
+        validationRules,
+        registerInput,
+        className,
+    } = props;
     const [isValid, setIsValid] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -47,7 +54,7 @@ const Input = (props: InputComponent) => {
         <p className={classes["input-container"]}>
             <label className={classes.label}>{label}</label>
             <input
-                className={classes.input}
+                className={`${classes.input} ${className ? className : ""}`}
                 type={type}
                 name={name}
                 onChange={handleInputChange}

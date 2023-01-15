@@ -46,6 +46,17 @@ const Form = () => {
                         atSignRule("Email"),
                     ]}
                 />
+                <FormInput
+                    label="Postal Code"
+                    type="text"
+                    name="Postal Code"
+                    className={classes.postal_code}
+                    validationRules={[
+                        requiredRule("Postal Code"),
+                        minLengthRule("Postal Code", 4),
+                        maxLengthRule("Postal Code", 4),
+                    ]}
+                />
                 <Button
                     className={classes.order_btn}
                     type="submit"

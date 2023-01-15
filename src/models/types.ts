@@ -52,6 +52,7 @@ export interface InputComponent {
     type: string;
     name: string;
     validationRules: Array<validationRule>;
+    className?: string;
     handleChange: (
         name: string,
         value: string,
