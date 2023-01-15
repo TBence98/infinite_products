@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+
+import withUseForm from "../utils/withUseForm";
+import { InputComponent } from "../models/types";
 
 interface Input {
     isValid: boolean;
@@ -10,7 +13,7 @@ interface FormData {
     [inputName: string]: Input;
 }
 
-const useForm = () => {
+const useForm = (Input: React.FunctionComponent<InputComponent>) => {
     const [formData, setFormData] = useState<FormData>({});
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -57,7 +60,11 @@ const useForm = () => {
         });
     };
 
-    return { onInputChange, isFormValid, formData, registerInput };
+    const FormInput = useMemo(() => {
+        return withUseForm(Input, registerInput, onInputChange);
+    }, []);
+
+    return { isFormValid, formData, FormInput };
 };
 
 export default useForm;
