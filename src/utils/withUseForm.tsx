@@ -1,9 +1,16 @@
+import {
+    HandleChange,
+    RegisterInput,
+    InputComponent,
+    BasicInputProps,
+} from "../models/types";
+
 const withUseForm = (
-    WrappedComponent: any,
-    registerInput: any,
-    handleChange: any
+    WrappedComponent: React.FunctionComponent<InputComponent>,
+    registerInput: RegisterInput,
+    handleChange: HandleChange
 ) => {
-    const WithUseForm = (props: any) => {
+    const WithUseForm = (props: BasicInputProps) => {
         return (
             <WrappedComponent
                 registerInput={registerInput}

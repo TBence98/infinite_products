@@ -47,19 +47,26 @@ interface validationRule {
     validate: (value: string) => boolean;
 }
 
-export interface InputComponent {
+export type RegisterInput = (name: string) => void;
+
+export type HandleChange = (
+    name: string,
+    value: string,
+    isValid: boolean,
+    errorMessage: string
+) => void;
+
+export interface BasicInputProps {
     label: string;
     type: string;
     name: string;
     validationRules: Array<validationRule>;
     className?: string;
-    handleChange: (
-        name: string,
-        value: string,
-        isValid: boolean,
-        errorMessage: string
-    ) => void;
-    registerInput: (name: string) => void;
+}
+
+export interface InputComponent extends BasicInputProps {
+    handleChange: HandleChange;
+    registerInput: RegisterInput;
 }
 
 export interface Input {
