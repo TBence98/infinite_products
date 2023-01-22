@@ -6,7 +6,7 @@ import classes from "./CartSummary.module.css";
 
 const CartSummary = () => {
     const cartCtx = useContext(OrderContext);
-    const ShipmentIsFree = cartCtx!.totalAmount > 50;
+    const isShipmentFree = cartCtx!.totalAmount > 50;
 
     return (
         <Card className={classes.cart_summary}>
@@ -17,8 +17,8 @@ const CartSummary = () => {
             </div>
             <div className={classes.summary_line}>
                 <span>Shipment Cost:</span>
-                <span className={ShipmentIsFree ? classes.free_shipment : ""}>
-                    {ShipmentIsFree ? "FREE" : "5 $"}
+                <span className={isShipmentFree ? classes.free_shipment : ""}>
+                    {isShipmentFree ? "FREE" : "5 $"}
                 </span>
             </div>
             <div className={classes.line_separator}></div>
