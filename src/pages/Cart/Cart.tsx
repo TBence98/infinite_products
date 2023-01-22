@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartList from "./CartList";
 import CartSummary from "./CartSummary";
-import CartContext from "../../store/CartContext";
+import OrderContext from "../../store/OrderContext";
 import classes from "./Cart.module.css";
 
 const Cart = () => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(OrderContext);
     const cartIsEmpty = cartCtx!.cartItems.length === 0;
     return (
         <>

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import Card from "../../components/UI/Card";
 import CartListItem from "./CartListItem";
-import CartContext from "../../store/CartContext";
+import OrderContext from "../../store/OrderContext";
 import classes from "./CartList.module.css";
 
 const CartList = () => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(OrderContext);
 
     return (
         <Card className={classes.cart_list}>

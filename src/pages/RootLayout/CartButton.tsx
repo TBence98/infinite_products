@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import CartContext from "../../store/CartContext";
+import OrderContext from "../../store/OrderContext";
 import classes from "./CartButton.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CartButton = () => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(OrderContext);
 
     const itemCount = cartCtx!.cartItems.reduce((count, item) => {
         return count + item.quantity;

@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { CartItem } from "../models/types";
-import CartContext from "./CartContext";
+import OrderContext from "./OrderContext";
 
 type CartContextProviderProps = {
     children: React.ReactNode;
@@ -81,7 +81,7 @@ const cartReducer = (state: cartState, action: cartAction) => {
     return defaultCartState;
 };
 
-const CartContextProvider = ({ children }: CartContextProviderProps) => {
+const OrderContextProvider = ({ children }: CartContextProviderProps) => {
     const [cartState, dispatchCartAction] = useReducer(
         cartReducer,
         defaultCartState
@@ -105,10 +105,10 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     console.log(cartState);
 
     return (
-        <CartContext.Provider value={contextValues}>
+        <OrderContext.Provider value={contextValues}>
             {children}
-        </CartContext.Provider>
+        </OrderContext.Provider>
     );
 };
 
-export default CartContextProvider;
+export default OrderContextProvider;

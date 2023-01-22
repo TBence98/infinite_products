@@ -3,12 +3,12 @@ import DiscountCard from "../../components/UI/DiscountCard";
 import Button from "../../components/UI/Button";
 import RatingStars from "./RatingStars";
 import { IProductDatas } from "../../models/types";
-import CartContext from "../../store/CartContext";
+import OrderContext from "../../store/OrderContext";
 
 import classes from "./ProductDetailInfos.module.css";
 
 const ProductDetailInfos: React.FC<IProductDatas> = (props) => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(OrderContext);
     const {
         title,
         description,

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/UI/Card";
-import CartContext from "../../store/CartContext";
+import OrderContext from "../../store/OrderContext";
 import classes from "./CartSummary.module.css";
 
 const CartSummary = () => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(OrderContext);
     const ShipmentIsFree = cartCtx!.totalAmount > 50;
 
     return (

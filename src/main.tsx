@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import CartContextProvider from "./store/CartContextProvider";
+import OrderContextProvider from "./store/OrderContextProvider";
 import ProductsContextProvider from "./store/ProductsContextProvider";
 import "./index.css";
 
@@ -20,9 +20,9 @@ import "./index.css";
 );*/
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <CartContextProvider>
+    <OrderContextProvider>
         <ProductsContextProvider>
             <App />
         </ProductsContextProvider>
-    </CartContextProvider>
+    </OrderContextProvider>
 );
