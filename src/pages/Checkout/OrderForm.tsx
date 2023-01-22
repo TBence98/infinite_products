@@ -1,7 +1,6 @@
 import Card from "../../components/UI/Card";
 import useForm from "../../hooks/useForm";
 import Button from "../../components/UI/Button";
-import Input from "../../components/UI/Input";
 import {
     requiredRule,
     minLengthRule,
@@ -12,7 +11,7 @@ import {
 import classes from "./OrderForm.module.css";
 
 const Form = () => {
-    const { isFormValid, formData, FormInput } = useForm(Input);
+    const { isFormValid, formData, FormInput } = useForm();
     console.log(formData);
     return (
         <Card className={classes.order_form}>
