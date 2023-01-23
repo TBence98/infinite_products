@@ -90,7 +90,6 @@ const OrderContextProvider = ({ children }: CartContextProviderProps) => {
         defaultCartState
     );
     const [orderDatas, setOrderDatas] = useState({} as OrderDatas);
-    const [orderPhase, setOrderPhase] = useState<1 | 2 | 3 | 4>(1);
 
     const addToCart = (product: CartItem) => {
         dispatchCartAction({ type: "ADD", item: product });
@@ -106,25 +105,18 @@ const OrderContextProvider = ({ children }: CartContextProviderProps) => {
         });
     };
 
-    const goToNextPhase = () => {
-        setOrderPhase((prevPhase) => (prevPhase + 1) as 1 | 2 | 3 | 4);
-    };
-
     const resetOrderContext = () => {
         dispatchCartAction({ type: "RESET" });
         setOrderDatas({} as OrderDatas);
-        setOrderPhase(1);
     };
 
     const contextValues = {
         cartItems: cartState.items,
         totalAmount: cartState.totalAmount,
         orderDatas,
-        orderPhase,
         addToCart,
         removeFromCart,
         addOrderDatas,
-        goToNextPhase,
         resetOrderContext,
     };
 

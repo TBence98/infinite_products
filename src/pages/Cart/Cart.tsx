@@ -7,8 +7,8 @@ import OrderForm from "./OrderForm";
 import classes from "./Cart.module.css";
 
 const Cart = () => {
-    const cartCtx = useContext(OrderContext);
-    const cartIsEmpty = cartCtx!.cartItems.length === 0;
+    const orderCtx = useContext(OrderContext);
+    const cartIsEmpty = orderCtx!.cartItems.length === 0;
     return (
         <>
             <h1>Cart</h1>
