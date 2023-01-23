@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CartList from "./CartList";
 import CartSummary from "./CartSummary";
 import OrderContext from "../../store/OrderContext";
+import OrderForm from "./OrderForm";
 import classes from "./Cart.module.css";
 
 const Cart = () => {
@@ -22,6 +23,7 @@ const Cart = () => {
                     <CartSummary />
                 </div>
             )}
+            <OrderForm />
         </>
     );
 };
