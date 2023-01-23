@@ -82,3 +82,59 @@ export interface Input {
 export interface FormConfig {
     [inputName: string]: Input;
 }
+
+export interface OrderDatas {
+    "contact info": {
+        email: string;
+        mobile: string;
+        name: string;
+    };
+    "billing address": {
+        street: string;
+        "postal code": string;
+        city: string;
+        country: string;
+        company?: string;
+        "tax number"?: string;
+        "VAT ID"?: string;
+    };
+    "shipping address": {
+        name: string;
+        street: string;
+        "postal code": string;
+        city: string;
+        country: string;
+        mobile: string;
+    };
+    note?: string;
+    shipping: string;
+    "payment method": string;
+}
+
+export interface UpdateOrderDatas {
+    "contact info"?: {
+        email: string;
+        mobile: string;
+        name: string;
+    };
+    "billing address"?: {
+        street: string;
+        "postal code": string;
+        city: string;
+        country: string;
+        company?: string;
+        "tax number"?: string;
+        "VAT ID"?: string;
+    };
+    "shipping address"?: {
+        name: string;
+        street: string;
+        "postal code": string;
+        city: string;
+        country: string;
+        mobile: string;
+    };
+    note?: string;
+    shipping?: string;
+    "payment method"?: string;
+}
