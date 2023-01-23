@@ -4,7 +4,7 @@ import Card from "../../components/UI/Card";
 import OrderContext from "../../store/OrderContext";
 import classes from "./CartSummary.module.css";
 
-const CartSummary = () => {
+const CartSummary = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
     const cartCtx = useContext(OrderContext);
     const isShipmentFree = cartCtx!.totalAmount > 50;
 
@@ -24,9 +24,13 @@ const CartSummary = () => {
             <div className={classes.line_separator}></div>
             <p className={classes.total_amount_text}>Total Amount:</p>
             <p className={classes.total_amount}>{cartCtx!.totalAmount} $</p>
-            <Link to="/checkout" className={classes.proveed_btn}>
-                Proceed To Checkout
-            </Link>
+            <button
+                type="button"
+                onClick={goToNextPhase}
+                className={classes.proceed_btn}
+            >
+                Continue
+            </button>
         </Card>
     );
 };

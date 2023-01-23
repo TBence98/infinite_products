@@ -10,13 +10,19 @@ import {
 
 import classes from "./OrderForm.module.css";
 
-const Form = () => {
+const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
     const { isFormValid, formData, FormInput } = useForm();
     console.log(formData);
+
+    function submitHandler(event: React.FormEvent) {
+        event.preventDefault();
+        goToNextPhase();
+    }
+
     return (
         <Card className={classes.order_form}>
             <h1 className={classes.title}>Order Product</h1>
-            <form>
+            <form onSubmit={submitHandler}>
                 <FormInput
                     label="First Name"
                     type="text"
