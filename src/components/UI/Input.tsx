@@ -51,18 +51,20 @@ const Input = (props: InputComponent) => {
     }
 
     return (
-        <p className={classes["input-container"]}>
-            <label className={classes.label}>{label}</label>
-            <input
-                className={`${classes.input} ${className ? className : ""}`}
-                type={type}
-                name={name}
-                onChange={handleInputChange}
-            />
+        <>
+            <p className={classes["input-container"]}>
+                <label className={classes.label}>{label}</label>
+                <input
+                    className={`${classes.input} ${className ? className : ""}`}
+                    type={type}
+                    name={name}
+                    onChange={handleInputChange}
+                />
+            </p>
             <span className={classes["error-text"]}>
                 {errorMessage && !isValid ? errorMessage : ""}
             </span>
-        </p>
+        </>
     );
 };
 
