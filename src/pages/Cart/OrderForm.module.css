@@ -1,15 +1,55 @@
 .order_form {
-    width: 25rem;
-    max-width: 90%;
-    margin: 7rem auto;
+    width: 70%;
+    margin: 0 auto;
 }
 
-.title {
-    text-align: center;
+.legend {
+    font-size: 1.3rem;
+    width: 100%;
+    padding-bottom: 0.3rem;
+    border-bottom: solid 1px rgb(201, 199, 199);
+    margin-bottom: 1rem;
+}
+
+.fieldset {
+    width: 100%;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.checkbox_container {
+    display: flex;
+    margin-left: 36%;
+}
+
+.checkbox_label {
+    order: 10;
+    margin-left: 0.4rem;
+}
+
+.select_container {
+    margin: 0.7rem;
+}
+
+.select_label {
+    display: inline-block;
+    width: 33%;
+    margin-right: 3%;
+    text-align: right;
+}
+
+.select {
+    width: 64%;
+    height: 2rem;
+    margin-bottom: 0.3rem;
 }
 
 .postal_code {
-    width: 15%;
+    width: 8%;
+}
+
+.city {
+    width: 20%;
 }
 
 .order_form button {

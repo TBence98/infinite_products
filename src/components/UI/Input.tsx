@@ -52,7 +52,13 @@ const Input = (props: InputComponent) => {
 
     return (
         <>
-            <p className={classes["input-container"]}>
+            <p
+                className={`${classes["input-container"]} ${
+                    errorMessage && !isValid
+                        ? classes["input-container--error"]
+                        : ""
+                }`}
+            >
                 <label className={classes.label}>{label}</label>
                 <input
                     className={`${classes.input} ${className ? className : ""}`}
@@ -61,9 +67,9 @@ const Input = (props: InputComponent) => {
                     onChange={handleInputChange}
                 />
             </p>
-            <span className={classes["error-text"]}>
-                {errorMessage && !isValid ? errorMessage : ""}
-            </span>
+            {errorMessage && !isValid ? (
+                <span className={classes["error-text"]}>{errorMessage}</span>
+            ) : null}
         </>
     );
 };
