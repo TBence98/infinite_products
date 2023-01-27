@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import useForm from "../../hooks/useForm";
 import Button from "../../components/UI/Button";
 import {
@@ -10,12 +11,42 @@ import {
 import classes from "./OrderForm.module.css";
 
 const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
-    const { isFormValid, formData, FormInput } = useForm();
+    const [invoiceToCompany, setInvoiceToCompany] = useState(false);
+    const [isSameAsBilling, setIsSameAsBilling] = useState(true);
+    const { isFormValid, formData, FormInput, removeFormInputs } = useForm();
     console.log(formData);
 
     function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         goToNextPhase();
+    }
+
+    useEffect(() => {
+        console.log(invoiceToCompany);
+        console.log(isSameAsBilling);
+    }, [invoiceToCompany, isSameAsBilling]);
+
+    function checkboxHandler(
+        event: React.ChangeEvent<HTMLInputElement>,
+        toBeRemovedInputs: string[],
+        setState: React.Dispatch<React.SetStateAction<boolean>>,
+        removeIfChecked: boolean
+    ) {
+        const isChecked = event.target.checked;
+
+        if (!isChecked && !removeIfChecked) {
+            removeFormInputs(toBeRemovedInputs);
+        } else if (isChecked && removeIfChecked) {
+            removeFormInputs(toBeRemovedInputs);
+        }
+
+        toggleCheckBoxState(setState);
+    }
+
+    function toggleCheckBoxState(
+        setState: React.Dispatch<React.SetStateAction<boolean>>
+    ) {
+        setState((prevState) => !prevState);
     }
 
     return (
@@ -60,7 +91,19 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                     >
                         Issue invoice to company
                     </label>
-                    <input type="checkbox" id="company_invoice" />
+                    <input
+                        type="checkbox"
+                        id="company_invoice"
+                        defaultChecked={invoiceToCompany}
+                        onChange={(e) =>
+                            checkboxHandler(
+                                e,
+                                ["company", "tax number", "vat id"],
+                                setInvoiceToCompany,
+                                false
+                            )
+                        }
+                    />
                 </p>
                 <FormInput
                     label="Street"
@@ -105,35 +148,37 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                         <option value="czech republic">Czech Republic</option>
                     </select>
                 </p>
-                <div>
-                    <FormInput
-                        label="Company"
-                        type="text"
-                        name="company"
-                        validationRules={[
-                            requiredRule("Company"),
-                            minLengthRule("Company", 3),
-                        ]}
-                    />
-                    <FormInput
-                        label="Tax number"
-                        type="text"
-                        name="tax number"
-                        validationRules={[
-                            requiredRule("Tax number"),
-                            minLengthRule("Tax number", 3),
-                        ]}
-                    />
-                    <FormInput
-                        label="VAT ID"
-                        type="text"
-                        name="vat id"
-                        validationRules={[
-                            requiredRule("VAT ID"),
-                            minLengthRule("VAT ID", 3),
-                        ]}
-                    />
-                </div>
+                {invoiceToCompany ? (
+                    <>
+                        <FormInput
+                            label="Company"
+                            type="text"
+                            name="company"
+                            validationRules={[
+                                requiredRule("Company"),
+                                minLengthRule("Company", 3),
+                            ]}
+                        />
+                        <FormInput
+                            label="Tax number"
+                            type="text"
+                            name="tax number"
+                            validationRules={[
+                                requiredRule("Tax number"),
+                                minLengthRule("Tax number", 3),
+                            ]}
+                        />
+                        <FormInput
+                            label="VAT ID"
+                            type="text"
+                            name="vat id"
+                            validationRules={[
+                                requiredRule("VAT ID"),
+                                minLengthRule("VAT ID", 3),
+                            ]}
+                        />
+                    </>
+                ) : null}
             </fieldset>
             <fieldset className={classes.fieldset}>
                 <legend className={classes.legend}>Shipping address</legend>
@@ -144,79 +189,99 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                     >
                         Same as billing
                     </label>
-                    <input type="checkbox" id="shipping address" />
+                    <input
+                        type="checkbox"
+                        id="shipping address"
+                        defaultChecked={isSameAsBilling}
+                        onChange={(e) =>
+                            checkboxHandler(
+                                e,
+                                [
+                                    "shipping name",
+                                    "shipping street",
+                                    "shipping postal code",
+                                    "shipping city",
+                                    "shipping mobile",
+                                ],
+                                setIsSameAsBilling,
+                                true
+                            )
+                        }
+                    />
                 </p>
-                <div>
-                    <FormInput
-                        label="Name and surname (company)"
-                        type="text"
-                        name="shipping name"
-                        validationRules={[
-                            requiredRule("Name and surname"),
-                            minLengthRule("Name and surname", 3),
-                        ]}
-                    />
-                    <FormInput
-                        label="Street"
-                        type="text"
-                        name="shipping street"
-                        validationRules={[
-                            requiredRule("Street"),
-                            minLengthRule("Street", 3),
-                        ]}
-                    />
-                    <FormInput
-                        label="Postal Code"
-                        type="text"
-                        name="shipping postal code"
-                        className={classes.postal_code}
-                        validationRules={[
-                            requiredRule("Postal Code"),
-                            minLengthRule("Postal Code", 4),
-                            maxLengthRule("Postal Code", 4),
-                        ]}
-                    />
-                    <FormInput
-                        label="City"
-                        type="text"
-                        name="shipping city"
-                        className={classes.city}
-                        validationRules={[
-                            requiredRule("City"),
-                            minLengthRule("City", 3),
-                        ]}
-                    />
-                    <p className={classes.select_container}>
-                        <label
-                            htmlFor="shipping_country"
-                            className={classes.select_label}
-                        >
-                            Country
-                        </label>
-                        <select
-                            id="shipping_country"
-                            className={classes.select}
-                        >
-                            <option value="">--Select your country</option>
-                            <option value="hungary">Hungary</option>
-                            <option value="germany">Germany</option>
-                            <option value="france">France</option>
-                            <option value="slovakia">Slovakia</option>
-                            <option value="czech republic">
-                                Czech Republic
-                            </option>
-                        </select>
-                    </p>
-                    <FormInput
-                        label="Mobile"
-                        type="tel"
-                        name="shipping mobile"
-                        validationRules={[
-                            requiredRule("Mobile"),
-                            minLengthRule("Mobile", 3),
-                        ]}
-                    />
-                </div>
+                {isSameAsBilling ? null : (
+                    <>
+                        <FormInput
+                            label="Name and surname (company)"
+                            type="text"
+                            name="shipping name"
+                            validationRules={[
+                                requiredRule("Name and surname"),
+                                minLengthRule("Name and surname", 3),
+                            ]}
+                        />
+                        <FormInput
+                            label="Street"
+                            type="text"
+                            name="shipping street"
+                            validationRules={[
+                                requiredRule("Street"),
+                                minLengthRule("Street", 3),
+                            ]}
+                        />
+                        <FormInput
+                            label="Postal Code"
+                            type="text"
+                            name="shipping postal code"
+                            className={classes.postal_code}
+                            validationRules={[
+                                requiredRule("Postal Code"),
+                                minLengthRule("Postal Code", 4),
+                                maxLengthRule("Postal Code", 4),
+                            ]}
+                        />
+                        <FormInput
+                            label="City"
+                            type="text"
+                            name="shipping city"
+                            className={classes.city}
+                            validationRules={[
+                                requiredRule("City"),
+                                minLengthRule("City", 3),
+                            ]}
+                        />
+                        <p className={classes.select_container}>
+                            <label
+                                htmlFor="shipping_country"
+                                className={classes.select_label}
+                            >
+                                Country
+                            </label>
+                            <select
+                                id="shipping_country"
+                                className={classes.select}
+                            >
+                                <option value="">--Select your country</option>
+                                <option value="hungary">Hungary</option>
+                                <option value="germany">Germany</option>
+                                <option value="france">France</option>
+                                <option value="slovakia">Slovakia</option>
+                                <option value="czech republic">
+                                    Czech Republic
+                                </option>
+                            </select>
+                        </p>
+                        <FormInput
+                            label="Mobile"
+                            type="tel"
+                            name="shipping mobile"
+                            validationRules={[
+                                requiredRule("Mobile"),
+                                minLengthRule("Mobile", 3),
+                            ]}
+                        />
+                    </>
+                )}
             </fieldset>
             <Button
                 className={classes.order_btn}

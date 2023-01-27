@@ -32,6 +32,15 @@ const useForm = () => {
         return true;
     };
 
+    const removeFormInputs = (inputs: string[]) => {
+        const modifiedFormData = { ...formData };
+        for (let input of inputs) {
+            delete modifiedFormData[input];
+        }
+
+        setFormData(modifiedFormData);
+    };
+
     const registerInput = (name: string) => {
         const inputObj = {
             value: "",
@@ -64,7 +73,7 @@ const useForm = () => {
         return withUseForm(Input, registerInput, onInputChange);
     }, []);
 
-    return { isFormValid, formData, FormInput };
+    return { isFormValid, formData, FormInput, removeFormInputs };
 };
 
 export default useForm;
