@@ -25,6 +25,7 @@ const OrderProgress = ({
                                 type="button"
                                 onClick={() => goToPhase(index + 1)}
                                 className={classes.phase_btn}
+                                key={index}
                             >
                                 {phaseLink}
                             </button>
@@ -33,13 +34,13 @@ const OrderProgress = ({
                     if (index + 1 === phase) {
                         // active link
                         return (
-                            <span className={classes.active_phase}>
+                            <span className={classes.active_phase} key={index}>
                                 {phaseLink}
                             </span>
                         );
                     } else {
                         // regular span element
-                        return <span>{phaseLink}</span>;
+                        return <span key={index}>{phaseLink}</span>;
                     }
                 })}
             </div>
