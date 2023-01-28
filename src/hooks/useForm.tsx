@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from "react";
 
 import withUseForm from "../utils/withUseForm";
 import Input from "../components/UI/Input";
+import Select from "../components/UI/Select";
+import { BasicTextInputProps, BasicSelectInputProps } from "../models/types";
 
 interface Input {
     isValid: boolean;
@@ -70,10 +72,22 @@ const useForm = () => {
     };
 
     const FormInput = useMemo(() => {
-        return withUseForm(Input, registerInput, onInputChange);
+        return withUseForm<BasicTextInputProps>(
+            Input,
+            registerInput,
+            onInputChange
+        );
     }, []);
 
-    return { isFormValid, formData, FormInput, removeFormInputs };
+    const FormSelect = useMemo(() => {
+        return withUseForm<BasicSelectInputProps>(
+            Select,
+            registerInput,
+            onInputChange
+        );
+    }, []);
+
+    return { isFormValid, formData, FormInput, FormSelect, removeFormInputs };
 };
 
 export default useForm;

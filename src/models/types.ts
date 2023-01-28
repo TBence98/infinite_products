@@ -58,16 +58,34 @@ export type HandleChange = (
 
 export interface BasicInputProps {
     label: string;
-    type: string;
     name: string;
     validationRules: Array<validationRule>;
     className?: string;
 }
 
-export interface InputComponent extends BasicInputProps {
+export interface BasicTextInputProps extends BasicInputProps {
+    type: string;
+}
+
+export interface InputComponent extends BasicTextInputProps {
     handleChange: HandleChange;
     registerInput: RegisterInput;
 }
+
+export interface BasicSelectInputProps extends BasicInputProps {
+    options: string[];
+}
+
+export interface SelectComponent extends BasicSelectInputProps {
+    handleChange: HandleChange;
+    registerInput: RegisterInput;
+}
+
+export type WrappedUseFormComponent = InputComponent | SelectComponent;
+
+export type WithUseFormProps = BasicTextInputProps | BasicSelectInputProps;
+
+export interface Select {}
 
 export interface Input {
     renderInput: RenderInput;

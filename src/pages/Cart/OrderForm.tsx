@@ -13,7 +13,8 @@ import classes from "./OrderForm.module.css";
 const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
     const [invoiceToCompany, setInvoiceToCompany] = useState(false);
     const [isSameAsBilling, setIsSameAsBilling] = useState(true);
-    const { isFormValid, formData, FormInput, removeFormInputs } = useForm();
+    const { isFormValid, formData, FormInput, FormSelect, removeFormInputs } =
+        useForm();
     console.log(formData);
 
     function submitHandler(event: React.FormEvent) {
@@ -135,19 +136,19 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                         minLengthRule("City", 3),
                     ]}
                 />
-                <p className={classes.select_container}>
-                    <label htmlFor="country" className={classes.select_label}>
-                        Country
-                    </label>
-                    <select id="country" className={classes.select}>
-                        <option value="">--Select your country</option>
-                        <option value="hungary">Hungary</option>
-                        <option value="germany">Germany</option>
-                        <option value="france">France</option>
-                        <option value="slovakia">Slovakia</option>
-                        <option value="czech republic">Czech Republic</option>
-                    </select>
-                </p>
+                <FormSelect
+                    label="Country"
+                    name="country"
+                    validationRules={[requiredRule("Country")]}
+                    options={[
+                        "--Select your country",
+                        "Hungary",
+                        "Germany",
+                        "France",
+                        "Slovakia",
+                        "Czech Republic",
+                    ]}
+                />
                 {invoiceToCompany ? (
                     <>
                         <FormInput
@@ -202,6 +203,7 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                                     "shipping postal code",
                                     "shipping city",
                                     "shipping mobile",
+                                    "shipping country",
                                 ],
                                 setIsSameAsBilling,
                                 true
@@ -250,7 +252,7 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                                 minLengthRule("City", 3),
                             ]}
                         />
-                        <p className={classes.select_container}>
+                        {/* <p className={classes.select_container}>
                             <label
                                 htmlFor="shipping_country"
                                 className={classes.select_label}
@@ -270,7 +272,20 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
                                     Czech Republic
                                 </option>
                             </select>
-                        </p>
+                        </p> */}
+                        <FormSelect
+                            label="Country"
+                            name="shipping country"
+                            validationRules={[requiredRule("Country")]}
+                            options={[
+                                "--Select your country",
+                                "Hungary",
+                                "Germany",
+                                "France",
+                                "Slovakia",
+                                "Czech Republic",
+                            ]}
+                        />
                         <FormInput
                             label="Mobile"
                             type="tel"
