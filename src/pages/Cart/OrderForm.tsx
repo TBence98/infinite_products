@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import useForm from "../../hooks/useForm";
 import Button from "../../components/UI/Button";
+import OrderContext from "../../store/OrderContext";
 import {
     requiredRule,
     minLengthRule,
@@ -13,19 +14,15 @@ import classes from "./OrderForm.module.css";
 const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
     const [invoiceToCompany, setInvoiceToCompany] = useState(false);
     const [isSameAsBilling, setIsSameAsBilling] = useState(true);
+    const orderCtx = useContext(OrderContext);
     const { isFormValid, formData, FormInput, FormSelect, removeFormInputs } =
         useForm();
-    console.log(formData);
 
     function submitHandler(event: React.FormEvent) {
         event.preventDefault();
+        addOrderDatas();
         goToNextPhase();
     }
-
-    useEffect(() => {
-        console.log(invoiceToCompany);
-        console.log(isSameAsBilling);
-    }, [invoiceToCompany, isSameAsBilling]);
 
     function checkboxHandler(
         event: React.ChangeEvent<HTMLInputElement>,
@@ -48,6 +45,55 @@ const Form = ({ goToNextPhase }: { goToNextPhase: () => void }) => {
         setState: React.Dispatch<React.SetStateAction<boolean>>
     ) {
         setState((prevState) => !prevState);
+    }
+
+    function addOrderDatas() {
+        const companyDatas = {} as {
+            company: string;
+            "tax number": string;
+            "vat id": string;
+        };
+
+        if (invoiceToCompany) {
+            companyDatas.company = formData.company.value;
+            companyDatas["tax number"] = formData["tax number"].value;
+            companyDatas["vat id"] = formData["vat id"].value;
+        }
+
+        const billingAddress = {
+            street: formData.street.value,
+            "postal code": formData["postal code"].value,
+            city: formData.city.value,
+            country: formData.country.value,
+        };
+
+        const orderDatas = {
+            "contact info": {
+                email: formData.email.value,
+                mobile: formData.mobile.value,
+                name: formData.name.value,
+            },
+            "billing address": {
+                ...billingAddress,
+                ...((invoiceToCompany ? companyDatas : undefined) ?? {}),
+            },
+            "shipping address": isSameAsBilling
+                ? {
+                      name: formData.name.value,
+                      mobile: formData.mobile.value,
+                      ...billingAddress,
+                  }
+                : {
+                      name: formData["shipping name"].value,
+                      street: formData["shipping street"].value,
+                      "postal code": formData["shipping postal code"].value,
+                      city: formData["shipping city"].value,
+                      country: formData["shipping country"].value,
+                      mobile: formData["shipping mobile"].value,
+                  },
+        };
+
+        orderCtx?.addOrderDatas(orderDatas);
     }
 
     return (

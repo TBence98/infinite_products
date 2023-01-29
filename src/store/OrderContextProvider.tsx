@@ -90,6 +90,7 @@ const OrderContextProvider = ({ children }: CartContextProviderProps) => {
         defaultCartState
     );
     const [orderDatas, setOrderDatas] = useState({} as OrderDatas);
+    console.log(orderDatas);
 
     const addToCart = (product: CartItem) => {
         dispatchCartAction({ type: "ADD", item: product });
@@ -119,8 +120,6 @@ const OrderContextProvider = ({ children }: CartContextProviderProps) => {
         addOrderDatas,
         resetOrderContext,
     };
-
-    console.log(cartState);
 
     return (
         <OrderContext.Provider value={contextValues}>
